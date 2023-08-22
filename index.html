@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O segredo dos cassinos</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+    body {
+        background: linear-gradient(to right, #0a0b0b, #020911);
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        text-align: center;
+    }
+
+        h1{
+            font-size: 2rem; /* Aqui você pode ajustar o tamanho da fonte */
+            margin-top: 5rem;
+            animation: fadein 2s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        video{
+            width: 80%;
+            margin: 5rem auto;
+            display: block;
+            animation: fadein 2s;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        button{
+            background-color: #2fc465;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            margin-top: 1rem; 
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 20px;
+        }
+        button:hover{
+            background-color: #000;
+            color: #fff;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-10px, 0); }
+            20% { transform: translate(10px, 0); }
+            30% { transform: translate(-10px, 0); }
+            40% { transform: translate(10px, 0); }
+            50% { transform: translate(-10px, 0); }
+            60% { transform: translate(10px, 0); }
+            70% { transform: translate(-10px, 0); }
+            80% { transform: translate(10px, 0); }
+            90% { transform: translate(-10px, 0); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Adicionando estilos para o container com efeito Glassmorphism */
+
+        .container {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin: auto;
+    padding-top: auto;
+    padding-bottom: auto;
+    border-radius: 20px;
+    background-color: #00000000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: auto;
+    -webkit-backdrop-filter: auto;
+    display:flex; 
+  	justify-content:center; 
+  	align-items:center; 
+  	flex-direction:auto; 
+  	animation:pulse infinite ease-in-out; /* Adicionando animação de pulsação */
+  	animation-duration:auto
+}
+
+    .container:before {
+        content: "";
+        position: absolute;
+        top: -0px;
+        left: -0px;
+        right: -0px;
+        bottom: -0px;
+        z-index: -1;
+        background-image: linear-gradient(to right, #bdc3c713, #2c3e5054);
+        border-radius: 40px; /* Adicionando bordas arredondadas */
+    }
+
+
+
+        .container:hover:before {
+          top:-25px; 
+          left:-25px; 
+          right:-25px; 
+          bottom:-25px
+        }
+        @keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+p {
+    margin-top: 1rem; /* Reduzindo a margem superior */
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div id="contador">
+          <p>Vagas disponíveis:<span id="vagas">5</span></p>
+          <div id="contagem" class="contador"></div>
+      </div>
+    </div>
+    <h1>O segredo dos Cassinos</h1>
+    <video controls>
+        <source src="mov/0821 (1).mp4" type="video/mp4">
+    </video>
+    <p style="text-align: center;">Agora é o momento de você segurar nas suas mãos a poderosa ferramenta que vai transformar a sua vida e te levar a lucros extraordinários!</p>
+    <button id="botao">CLIQUE AQUI</button>
+    <script>
+        const button = document.getElementById('botao');
+        const video = document.querySelector('video');
+        const vagasSpan = document.getElementById('vagas');
+        const contagemDiv = document.getElementById('contagem');
+
+        let vagasDisponiveis = 5;
+        let contagemRegressiva = 3600;
+
+        button.addEventListener('click', () => {
+            if (vagasDisponiveis > 0) {
+                vagasDisponiveis--;
+                vagasSpan.textContent = vagasDisponiveis;
+                video.play();
+            } else {
+                alert('Vagas esgotadas!');
+            }
+        });
+
+        function atualizarContagem() {
+            let horas = Math.floor(contagemRegressiva / 3600);
+            let minutos = Math.floor((contagemRegressiva % 3600) / 60);
+            let segundos = contagemRegressiva % 60;
+            contagemDiv.textContent = `Faltam ${horas}h ${minutos}m ${segundos}s`;
+            if (contagemRegressiva > 0) {
+                contagemRegressiva -= 1;
+                setTimeout(atualizarContagem, 1000);
+            }
+        }
+
+        atualizarContagem();
+    </script>
+</body>
+</html>
